@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+  <title>Service Search</title>
+  <link rel="stylesheet" href="Services.css"/>
+</head>
+<body>
+    <div id="header">
+        <div id="menu">
+          <a class="menuItem" href="Final Web.html">Home</a>
+          <a class="menuItem" href="Fact.html">Fact Check</a>
+          <a class="menuItem" href="Services.html">Services</a>
+          <a class="menuItem" href="twinestory.html">History</a>
+          <a class="menuItem" href="Story.html">Story</a>
+        </div>
+        <div id="fontControls">
+        <input type="button" value="Increase Font Size" onclick="increaseSizeBy3px()">
+        <input type="button" value="Decrease Font Size" onclick="decreaseSizeBy3px()">
+        </div>
+    </div>
+
+    <label for="location">Location:</label>
+    <select id="location">
+      <option value="borough1">Manhattan</option>
+      <option value="borough2">Brooklyn</option>
+      <option value="bronx">Bronx</option>
+      <option value="borough4">Staten Island</option>
+      <option value="borough5">Queens</option>
+    </select>
+  
+    <label for="age">Age range:</label>
+    <select id="age">
+      <option value="under_10">Under 10</option>
+      <option value="11_21">11-21</option>
+      <option value="22_54">22-54</option>
+      <option value="over_55">Over 55</option>
+    </select>
+
+    <button id="searchButton">Search</button>
+
+    <div id="results-container"></div>
+
+  
+    <script>
+    document.getElementById("searchButton").addEventListener("click", search);
+
+function search() {
+  const locationDropdown = document.getElementById("location");
+  const selectedLocation = locationDropdown.value;
+
+  const ageDropdown = document.getElementById("age");
+  const selectedAge = ageDropdown.value;
+
+  const results = performSearch(selectedLocation, selectedAge);
+
+  displayResults(results);
+}
+
+function performSearch(location, age) {
+  if (location === "bronx" && age === "22_54") {
+    return [{
+      name: "Pre-vocational Program",
+      description: "The Pre-vocational Program provides vocational training and support services to individuals aged 22-54 living in the Bronx. It helps participants develop job readiness skills and prepares them for employment opportunities.",
+      image: "https://www.perkins.org/wp-content/uploads/2015/10/PEP-NEDA20Month20Blog.jpg",
+      video: "https://www.youtube.com/embed/j1bCQEm1mSQ?si=A3f-JKzb-vEJXQW2",
+      mapLocation: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5896.254922714684!2d-71.1773396!3d42.3611228!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3781093534039%3A0x31aa255844888e81!2sPerkins%20School%20for%20the%20Blind!5e0!3m2!1sen!2sus!4v1713988701746!5m2!1sen!2sus",
+    }];
+  } else {
+    return [];
+  }
+}
+
+function displayResults(results) {
+  const resultsContainer = document.getElementById("results-container");
+  
+  resultsContainer.innerHTML = "";
+  
+  if (results.length > 0) {
+    resultsContainer.style.display = "block";
+    
+    results.forEach(result => {
+      const resultDiv = document.createElement("div");
+      resultDiv.classList.add("search-result");
+
+      const heading = document.createElement("h2");
+      heading.textContent = result.name;
+      resultDiv.appendChild(heading);
+
+      const description = document.createElement("p");
+      description.textContent = result.description;
+      resultDiv.appendChild(description);
+
+      const image = document.createElement("img");
+      image.src = result.image;
+      image.alt = result.name;
+      resultDiv.appendChild(image);
+
+      const video = document.createElement("iframe");
+      video.src = result.video;
+      video.width = "560";
+      video.height = "315";
+      video.title = "YouTube video player";
+      video.frameBorder = "0";
+      video.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      video.allowFullscreen = true;
+      resultDiv.appendChild(video);
+
+      const map = document.createElement("iframe");
+      map.src = result.mapLocation;
+      map.style.border = "0";
+      map.allowFullscreen = true;
+      resultDiv.appendChild(map);
+
+      resultsContainer.appendChild(resultDiv);
+    });
+  } else {
+    resultsContainer.style.display = "none";
+  }
+}
+    </script>
+  </body>
+  </html>

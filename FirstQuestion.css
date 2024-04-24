@@ -1,0 +1,96 @@
+#visually {
+  margin-right: 20px;
+  margin-left: 10px;
+  font-size: 30px; 
+  margin-bottom: 20px; 
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 10px 20px;
+}
+
+#menu {
+  display: flex;
+}
+
+.menuItem {
+  margin: 0 10px;
+  font-size: 26px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menuItem:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#fontControls {
+  margin-right: 3px;
+}
+
+#fontControls input[type="button"] {
+  font-size: 24px;
+  padding: 5px 10px; 
+  margin:0;
+  background-color: #ff5733;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#header input[type="button"]:hover {
+  background-color: #ff8c66;
+  color: white;
+  cursor:pointer;
+}
+
+#factButton1 {
+  margin-left: 20px;
+}
+
+#firstSentenceContainer {
+  margin-left: 20px;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+#sentences {
+  margin-left: 40px; 
+  margin-right: 20px; 
+  width:min-content; 
+  font-size: 26px; 
+  line-height: 1.2; 
+  flex: 1; 
+}
+
+#contentWrapper {
+  display: flex;
+}
+
+#imageContainer {
+  flex: 0 0 200px; 
+  margin-left: 20px; 
+}
+
+#image {
+  display:inline; 
+  width: 100%; 
+  height: auto; 
+}
+
+#readAgainButton {
+  position:relative; 
+  left: 50%;
+  transform: translateX(-50%); 
+}
+
+.img[src=""] {
+  display: none;
+}

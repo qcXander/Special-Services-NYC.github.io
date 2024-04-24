@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+  <title>Fact Check</title>
+  <link rel="stylesheet" href="SecondQuestion.css"/>
+</head>
+<body>
+    <div id="header">
+        <div id="menu">
+          <a class="menuItem" href="Final Web.html">Home</a>
+          <a class="menuItem" href="Fact.html">Fact Check</a>
+          <a class="menuItem" href="Services.html">Services</a>
+          <a class="menuItem" href="twinestory.html">History</a>
+          <a class="menuItem" href="Story.html">Story</a>
+        </div>
+        <div id="fontControls">
+        <input type="button" value="Increase Font Size" onclick="increaseSizeBy3px()">
+        <input type="button" value="Decrease Font Size" onclick="decreaseSizeBy3px()">
+        </div>
+    </div>
+  
+    <div id="SecondSentenceContainer">
+      <p id="causes">Do you know what are some <span style="color: red;">CAUSES</span> of vision loss?</p>
+      <p id="causes">Hover your mouse on the following below</p>
+      <button id="factButton2">FACT</button>
+    </div>
+  
+    <div id="contentWrapper">
+      <div id="nextParagraph" style="display: none;">
+        <ul id="causesList">
+        </ul>
+      </div>
+    </div>
+  
+    <script>
+
+    function increaseSizeBy3px() {
+            console.log("Increasing font size by 3px...");
+            changeFontSizeByAmount(3);
+        }
+        function decreaseSizeBy3px() {
+            console.log("Decreasing font size by 3px...");
+            changeFontSizeByAmount(-3);
+        }   
+        function changeFontSizeByAmount(amount) {
+            console.log("Changing font size by", amount, "px...");
+            var elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+            elements.forEach(function(element) {
+                var fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+                var currentFontSize = parseInt(fontSize);
+                element.style.fontSize = (currentFontSize + amount) + "px";
+            });
+        }
+      const causes = [
+        {
+          name: "Refractive errors",
+          link: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/refractive-errors",
+          tooltip: "More than 150 million Americans have a refractive error — but many don't know that they could be seeing better."
+        },
+        {
+          name: "Cataracts",
+          link: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/cataracts#:~:text=A%20cataract%20is%20a%20cloudy,to%20get%20rid%20of%20cataracts.",
+          tooltip: "More than half of all Americans age 80 or older either have cataracts or have had surgery to get rid of cataracts."
+        },
+        {
+          name: "Diabetic retinopathy",
+          link: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/diabetic-retinopathy",
+          tooltip: "Diabetic retinopathy is caused by high blood sugar due to diabetes."
+        },
+        {
+          name: "Glaucoma",
+          link: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/glaucoma#:~:text=What%20is%20glaucoma%3F,a%20comprehensive%20dilated%20eye%20exam.",
+          tooltip: "The symptoms of Glaucoma can start so slowly that you may not notice them."
+        },
+        {
+          name: "Age-related macular degeneration",
+          link: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/age-related-macular-degeneration",
+          tooltip: "AMD doesn't cause complete blindness but a loss of central vision."
+        }
+      ];
+  
+      function createCausesList() {
+        const causesListElement = document.getElementById("causesList");
+        causes.forEach(cause => {
+          const listItem = document.createElement("li");
+          const tooltip = document.createElement("span");
+          tooltip.classList.add("tooltip");
+          const link = document.createElement("a");
+          link.textContent = cause.name;
+          link.setAttribute("id", cause.name.replace(/\s+/g, '-').toLowerCase());
+          const tooltipText = document.createElement("span");
+          tooltipText.classList.add("tooltiptext");
+          tooltipText.textContent = cause.tooltip;
+          tooltip.appendChild(link);
+          tooltip.appendChild(tooltipText);
+          listItem.appendChild(tooltip);
+          causesListElement.appendChild(listItem);
+        });
+      }
+  
+      document.getElementById("factButton2").addEventListener("click", function() {
+        const targetElement = document.getElementById("nextParagraph");
+        targetElement.style.display = "block";
+        createCausesList(); 
+      });
+    </script>
+  </body>
+  </html>

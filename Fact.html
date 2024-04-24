@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <title>Fact Check</title>
+  <link rel="stylesheet" href="Fact Page.css"/>
+</head>
+<body>
+    <div id="header">
+        <div id="menu">
+          <a class="menuItem" href="Final Web.html">Home</a>
+          <a class="menuItem" href="Fact.html">Fact Check</a>
+          <a class="menuItem" href="Services.html">Services</a>
+          <a class="menuItem" href="twinestory.html">History</a>
+          <a class="menuItem" href="Story.html">Story</a>
+        </div>
+        <div id="fontControls">
+        <input type="button" value="Increase Font Size" onclick="increaseSizeBy3px()">
+        <input type="button" value="Decrease Font Size" onclick="decreaseSizeBy3px()">
+        </div>
+    </div>
+  <h1 id="truth">Let's dig into some truth</h1>
+
+  <div id="firstSentenceContainer">
+    <p id="Container">Have you ever noticed how much <span id="visually-impaired" style="color: red;"><a href="FirstQuestion.html">VISION</a></span> facilitates everyday life? </p>
+  </div>
+
+  <div id="SecondSentenceContainer">
+    <p id="Container">Do you know what are some <span style="color: red;"><a href="SecondQuestion.html">CAUSES</a></span> of vision loss?
+  </div>
+
+  <div id="ThirdSentenceContainer">
+    <p id="Container">How to define <span style="color: red;"><a href="ThirdQuestion.html">VISUAL IMPAIRMENTS</a></span>?
+  </div>
+
+  <div id="FouthSentenceContainer">
+    <p id="Container">Can visually impaired persons still find a <span style="color: red;"><a href="FourthQuestion.html">JOB</a></span>?
+  </div>
+
+<script>
+function increaseSizeBy3px() {
+            console.log("Increasing font size by 3px...");
+            changeFontSizeByAmount(3);
+        }
+        function decreaseSizeBy3px() {
+            console.log("Decreasing font size by 3px...");
+            changeFontSizeByAmount(-3);
+        }   
+        function changeFontSizeByAmount(amount) {
+            console.log("Changing font size by", amount, "px...");
+            var elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+            elements.forEach(function(element) {
+                var fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+                var currentFontSize = parseInt(fontSize);
+                element.style.fontSize = (currentFontSize + amount) + "px";
+            });
+        }
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+  <title>Fact Check</title>
+  <link rel="stylesheet" href="FirstQuestion.css"/>
+</head>
+<body>
+    <div id="header">
+        <div id="menu">
+          <a class="menuItem" href="Final Web.html">Home</a>
+          <a class="menuItem" href="Fact.html">Fact Check</a>
+          <a class="menuItem" href="Services.html">Services</a>
+          <a class="menuItem" href="twinestory.html">History</a>
+          <a class="menuItem" href="Story.html">Story</a>
+        </div>
+        <div id="fontControls">
+        <input type="button" value="Increase Font Size" onclick="increaseSizeBy3px()">
+        <input type="button" value="Decrease Font Size" onclick="decreaseSizeBy3px()">
+        </div>
+    </div>
+
+  <div id="firstSentenceContainer">
+    <p id="visually">Have you ever noticed how much <span id="visually-impaired" style="color: red;">VISION</span> facilitates everyday life? </p>
+    <br>
+    <button id="factButton1">FACT</button>
+    <audio id="backgroundMusic" src="C:\Users\FeNis\Desktop\PMMA6215Interactive\Final Website\awaken-136824.mp3" preload="auto"></audio>
+  </div>
+
+  <div id="contentWrapper">
+    <div id="sentences"></div>
+    <div id="imageContainer">
+      <img id="image" src="" alt="Image">
+    </div>
+  </div>
+  <button id="readAgainButton" style="display: none;">READ AGAIN</button>
+
+  <script>
+    var audio = document.getElementById("backgroundMusic");
+
+    function playMusic() {
+      audio.volume = 0.5;
+      audio.play();
+    }
+
+    document.getElementById("factButton1").addEventListener("click", playMusic);
+    document.getElementById("factButton1").addEventListener("click", function() {
+  displaySentences("sentences");
+});
+    const sentences = [
+      { text: "Vision, the most dominant of our senses," },
+      { text: "plays a critical role in every facet and stage of our lives." },
+      { text: "We take vision for granted," },
+      { text: "but without vision," },
+      { text: "we struggle to learn,", sound: "learn.mp3" },
+      { text: "to walk,", sound: "walk.mp3" },
+      { text: "to read,", sound: "read.mp3" },
+      { text: "to participate in school", sound: "school.mp3" },
+      { text: "and to work.", sound: "work.mp3" },
+      { text: "" }, 
+      { text: "Human behavior states that we learn through modeling." },
+      { text: "We observe and mimic the actions of those around us." },
+      { text: "Even babies do it." },
+      { text: "They smile because most adults smile at them," },
+      { text: "and then they smile back." },
+      { text: "Sighted persons know how to use a smile to express happiness." },
+      { text: "They know how to raise their hands in the classroom to ask questions." },
+      { text: "They know people are nodding their heads in agreement." },
+      { text: "However, visually impaired persons have to learn those things in different ways." },
+      { text: "Without the ability to rely on visual cues," },
+      { text: "they must navigate the world through verbal guidance and explanations." },
+    ];
+
+    const images = [
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/infant.jpg",
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/infantsmile.jpg",
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/smile.jpg",
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/raisehand.jpg",
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/nodding.jpg",
+      "C:/Users/FeNis/Desktop/PMMA6215Interactive/Final Website/visuallyimpariedlearn.png"
+    ];
+
+
+    document.getElementById("sentences").scrollIntoView({ behavior: "smooth" });
+
+let imageIndex = 0;
+const imageElement = document.getElementById("image");
+
+function displaySentences(targetElementId) {
+  const targetElement = document.getElementById(targetElementId);
+  targetElement.innerHTML = "";
+
+  function displayNextSentence(index) {
+    if (index < sentences.length) {
+      const sentence = sentences[index];
+      let sentenceHTML = "";
+      if (sentence.text !== "") {
+        sentenceHTML += sentence.text + "<br>"; 
+      } else {
+        sentenceHTML += "<br>";
+      }
+
+      if (!targetElement.innerHTML.includes(sentenceHTML)) {
+        targetElement.innerHTML += sentenceHTML;
+
+        if (sentence.sound) {
+          const audio = new Audio(sentence.sound);
+          audio.play();
+
+          const audioDuration = index === sentences.length - 1 ? 4000 : 2000;
+
+          setTimeout(() => {
+            audio.pause();
+            audio.currentTime = 0;
+          }, audioDuration);
+        }
+
+        if (sentence.text === "Human behavior states that we learn through modeling.") {
+          setInterval(() => {
+            imageElement.src = images[imageIndex];
+            imageIndex = (imageIndex + 1) % images.length;
+          }, 2000);
+        }
+      }
+
+      setTimeout(() => {
+        displayNextSentence(index + 1);
+      }, 2000);
+    } else {
+      document.getElementById("readAgainButton").style.display = "inline-block";
+    }
+  }
+
+  playMusic();
+  displayNextSentence(0);
+}
+
+document.getElementById("factButton1").addEventListener("click", function() {
+  displaySentences("sentences");
+});
+
+document.getElementById("readAgainButton").addEventListener("click", function() {
+  document.getElementById("sentences").innerHTML = ""; 
+  imageElement.src = ""; 
+  clearInterval(imageInterval); 
+  displaySentences("sentences"); 
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgrey;
+    padding: 10px 20px;
+  }
+  
+  
+  .menuItem {
+    margin: 0 10px; 
+    font-size: 26px; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .menuItem:not(:last-child)::after {
+    content: "|";
+    margin-left: 10px; 
+    margin-right: 10px; 
+  }
+
+
+  #fontControls {
+    margin-right: 3px;
+  }
+
+#fontControls input[type="button"] {
+    font-size: 24px;
+    padding: 5px 10px; 
+    margin:0;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#header input[type="button"]:hover {
+    background-color: #ff8c66;
+    color: white;
+    cursor:pointer;
+}
+
+
+#Container {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 28px; 
+  margin-bottom: 50px; 
+  font-weight: bold;
+}
+
+#truth {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 38px; 
+  margin-bottom: 50px; 
+  font-weight: bold;
+}
